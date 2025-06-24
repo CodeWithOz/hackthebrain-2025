@@ -13,3 +13,79 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum UserRole {
+  DOCTOR
+  HOSPITAL_ADMIN
+}
+
+model User {
+  id              String           @id @default(uuid())
+  email           String           @unique
+  passwordHash    String
+  role            UserRole
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  doctorProfile   DoctorProfile?
+  hospitalProfile HospitalProfile?
+}
+
+model DoctorProfile {
+  id                    String        @id @default(uuid())
+  user                  User          @relation(fields: [userId], references: [id])
+  userId                String        @unique
+  fullName              String
+  countryOfOrigin       String
+  credentials           String
+  translatedCredentials String
+  yearsExperience       Int
+  location              String
+  applications          Application[]
+}
+
+model HospitalProfile {
+  id           String       @id @default(uuid())
+  user         User         @relation(fields: [userId], references: [id])
+  userId       String       @unique
+  hospitalName String
+  address      String
+  contactEmail String
+  jobPostings  JobPosting[]
+}
+
+model JobPosting {
+  id           String          @id @default(uuid())
+  hospital     HospitalProfile @relation(fields: [hospitalId], references: [id])
+  hospitalId   String
+  title        String
+  description  String
+  requirements String
+  location     String
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  applications Application[]
+}
+
+model Application {
+  id           String            @id @default(uuid())
+  doctor       DoctorProfile     @relation(fields: [doctorId], references: [id])
+  doctorId     String
+  jobPosting   JobPosting        @relation(fields: [jobPostingId], references: [id])
+  jobPostingId String
+  status       ApplicationStatus @default(PENDING)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model CredentialTranslation {
+  id                 String  @id @default(uuid())
+  originalCredential String
+  canadianEquivalent String
+  notes              String?
+}

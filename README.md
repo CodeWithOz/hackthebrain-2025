@@ -5,7 +5,21 @@ This project is a platform that matches immigrant doctors in Canada with hospita
 
 ## Getting Started
 
-First, run the development server:
+First, get a connection URL to a Postgres database. You can get a free one from [neon.tech](https://neon.tech/). Once you have the connection URL, set the `DATABASE_URL` environment variable to the URL (including the "postgres://" prefix).
+
+Next, install dependencies:
+
+```bash
+npm install
+```
+
+Then, initialize the database with Prisma:
+
+```bash
+npx prisma db push
+```
+
+Run the development server:
 
 ```bash
 npm run dev

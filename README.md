@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Immigrant Doctor-Hospital Matching Platform
+
+This project is a platform that matches immigrant doctors in Canada with hospitals that need their skills. It translates the credentials of the doctors to their Canadian equivalents in order to match the credentials to the requirements of the hospitals. Hospitals specify their needs in the form of job postings, and doctors apply to those jobs via the platform.
+
 
 ## Getting Started
 
@@ -6,31 +9,17 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Branching Strategy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To keep our project organized and make collaboration easy, please follow this simple branching strategy:
 
-## Learn More
+- Always create a new branch for any feature, bug fix, or change you are working on. Give your branch a clear name (for example, `feature/doctor-profile` or `fix/login-bug`).
+- Do not work directly on the `main` branch.
+- When your work is ready, push your branch to GitHub and create a Pull Request (PR) to merge your changes into the `main` branch.
+- In your PR, make sure to add the specified reviewer so they can review your code before it is merged.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you’re not sure who the reviewer should be, ask in the project chat or check the repository settings. This process helps us keep the codebase stable and makes it easier for everyone to contribute!

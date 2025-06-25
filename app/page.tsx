@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useAuth } from "@clerk/nextjs";
 import {
   matchDoctorToJobs,
   DoctorProfile,
@@ -15,11 +16,15 @@ import {
 } from "../modules/credentialMapping";
 
 export default function Home() {
+  const { isLoaded, isSignedIn, userId, sessionId } = useAuth();
+  console.log(isLoaded, isSignedIn, userId, sessionId);
+
   const [results, setResults] = useState<JobPostingMatch[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   // Credential mapping demo state
-  const [mappingResult, setMappingResult] = useState<CredentialMappingReport | null>(null);
+  const [mappingResult, setMappingResult] =
+    useState<CredentialMappingReport | null>(null);
   const [mappingLoading, setMappingLoading] = useState(false);
 
   // Dummy data
@@ -148,13 +153,13 @@ export default function Home() {
         {/* Credential Mapping Demo Section */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">
-              Credential Mapping Demo
-            </CardTitle>
+            <CardTitle className="text-2xl">Credential Mapping Demo</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              See how your credentials map to Canadian requirements and what steps you may need to take next. This demo uses a sample specialist from India who is missing some requirements.
+              See how your credentials map to Canadian requirements and what
+              steps you may need to take next. This demo uses a sample
+              specialist from India who is missing some requirements.
             </p>
             <Button
               className="w-full"
@@ -182,7 +187,9 @@ export default function Home() {
             </Button>
             {mappingResult && (
               <div className="space-y-4 mt-4">
-                <h2 className="font-semibold text-lg">Credential Mapping Report</h2>
+                <h2 className="font-semibold text-lg">
+                  Credential Mapping Report
+                </h2>
                 <Card className="border border-primary/20 bg-white">
                   <CardContent className="py-4">
                     <pre className="whitespace-pre-wrap text-xs text-slate-700">

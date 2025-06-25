@@ -22,7 +22,7 @@ enum UserRole {
 model User {
   id              String           @id @default(uuid())
   email           String           @unique
-  passwordHash    String
+  clerkId         String           @unique
   role            UserRole
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt

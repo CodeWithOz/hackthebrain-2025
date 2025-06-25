@@ -8,10 +8,19 @@ import {
   JobPosting,
   JobPostingMatch,
 } from "../modules/matching";
+import {
+  evaluateApplicant,
+  Applicant,
+  CredentialMappingReport,
+} from "../modules/credentialMapping";
 
 export default function Home() {
   const [results, setResults] = useState<JobPostingMatch[] | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Credential mapping demo state
+  const [mappingResult, setMappingResult] = useState<CredentialMappingReport | null>(null);
+  const [mappingLoading, setMappingLoading] = useState(false);
 
   // Dummy data
   const doctor: DoctorProfile = {
@@ -69,6 +78,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-slate-100 px-4">
       <div className="max-w-xl w-full space-y-8">
+        {/* Matching Demo Section */}
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl">
@@ -127,6 +137,59 @@ export default function Home() {
                     </Card>
                   ))
                 )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Divider */}
+        <div className="my-4 border-t border-slate-200" />
+
+        {/* Credential Mapping Demo Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl">
+              Credential Mapping Demo
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              See how your credentials map to Canadian requirements and what steps you may need to take next. This demo uses a sample specialist from India who is missing some requirements.
+            </p>
+            <Button
+              className="w-full"
+              onClick={() => {
+                setMappingLoading(true);
+                setTimeout(() => {
+                  const applicant: Applicant = {
+                    country: "India",
+                    degreeVerified: true,
+                    internshipMonths: 12,
+                    hasMCCQE1: false,
+                    role: "specialist",
+                    foreignSpecialtyCert: "MD Medicine",
+                    provinceLicence: false,
+                    cmpa: false,
+                  };
+                  const report = evaluateApplicant(applicant);
+                  setMappingResult(report);
+                  setMappingLoading(false);
+                }, 700);
+              }}
+              disabled={mappingLoading}
+            >
+              {mappingLoading ? "Evaluating..." : "See Credential Mapping"}
+            </Button>
+            {mappingResult && (
+              <div className="space-y-4 mt-4">
+                <h2 className="font-semibold text-lg">Credential Mapping Report</h2>
+                <Card className="border border-primary/20 bg-white">
+                  <CardContent className="py-4">
+                    <pre className="whitespace-pre-wrap text-xs text-slate-700">
+                      {mappingResult.summary}
+                    </pre>
+                  </CardContent>
+                </Card>
               </div>
             )}
           </CardContent>

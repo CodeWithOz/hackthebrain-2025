@@ -4,7 +4,7 @@ This project is a platform that matches immigrant doctors in Canada with hospita
 
 - Doctor registration and profile management
 - Hospital registration and profile management
-- Credential translation
+- Credential mapping (evaluate which Canadian requirements are met by immigrant credentials, and suggest actions to fill any gaps)
 - Credential matching
 - Automated application
 - Job postings

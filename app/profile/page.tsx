@@ -24,7 +24,7 @@ export default async function ProfilePage() {
     
     // Check user role and redirect accordingly
     if (user.role === 'DOCTOR') {
-      redirect("/profile/doctor/");
+      redirect("/profile/doctor");
     } else if (user.role === 'HOSPITAL_ADMIN') {
       // In the future, you might have a hospital admin profile page
       // redirect('/profile/hospital');

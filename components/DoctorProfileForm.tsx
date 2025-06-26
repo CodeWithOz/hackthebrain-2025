@@ -200,7 +200,7 @@ export default function DoctorProfileForm({ existingProfile, userId }: DoctorPro
       
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="resume">
-          Resume/CV
+          Resume/CV (PDF only)
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -208,8 +208,11 @@ export default function DoctorProfileForm({ existingProfile, userId }: DoctorPro
           type="file"
           name="resume"
           onChange={handleFileChange}
-          accept=".pdf,.doc,.docx"
+          accept=".pdf"
         />
+        <p className="text-sm text-gray-600 mt-1">
+          Please upload your resume in PDF format only. Our system automatically extracts credential information from PDFs.
+        </p>
         {existingProfile?.resumeUrl && !resumeFile && (
           <p className="text-sm text-gray-600 mt-1">
             Current resume: {existingProfile.resumeUrl}

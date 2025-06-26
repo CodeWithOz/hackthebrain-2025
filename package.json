@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.23.0",
+    "@google-cloud/documentai": "^9.2.0",
+    "@langchain/community": "^0.3.47",
+    "@langchain/core": "^0.3.61",
+    "@langchain/google-genai": "^0.2.13",
     "@prisma/client": "^6.10.1",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
@@ -20,7 +24,8 @@
     "prisma": "^6.10.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
